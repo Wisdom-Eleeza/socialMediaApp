@@ -273,27 +273,26 @@ main .container .left .profile {
   display: block;
 }
 
-
 /* ----------------------------- MIDDLE ----------------------------- */
-.middle .stories{
-    display: flex;
-    justify-content: space-between;
-    height: 12rem;
-    gap: 0.5rem;
+.middle .stories {
+  display: flex;
+  justify-content: space-between;
+  height: 12rem;
+  gap: 0.5rem;
 }
 /* Parent takes position relative */
-.middle .stories .story{
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-size: 0.75rem;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+.middle .stories .story {
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 0.75rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 /*
@@ -301,65 +300,131 @@ the images are not showing clearly,
 so we are setting the before of each story,
 child takes position:absolute
  */
- .middle .stories .story::before{
-    content: "";
-    display: block;
-    width: 100%;
-    height: 5rem;
-    /* There's a black rectangle that was made tranparent for the text to show */
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
-    position: absolute;
-    bottom: 0;
- }
+.middle .stories .story::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 5rem;
+  /* There's a black rectangle that was made tranparent for the text to show */
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  position: absolute;
+  bottom: 0;
+}
 
- .middle .stories .story .name{
-    z-index: 2;
- }
+.middle .stories .story .name {
+  z-index: 2;
+}
 
 /* Psuedo class .story:nth-child(1) means the first-child of the element story */
-.middle .stories .story:nth-child(1){
-    background: url("./images/story-1.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(1) {
+  background: url("./images/story-1.jpg") no-repeat center center/cover;
 }
 
-.middle .stories .story:nth-child(2){
-    background: url("./images/story-2.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(2) {
+  background: url("./images/story-2.jpg") no-repeat center center/cover;
 }
 
-.middle .stories .story:nth-child(3){
-    background: url("./images/story-3.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(3) {
+  background: url("./images/story-3.jpg") no-repeat center center/cover;
 }
 
-.middle .stories .story:nth-child(4){
-    background: url("./images/story-4.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(4) {
+  background: url("./images/story-4.jpg") no-repeat center center/cover;
 }
 
-.middle .stories .story:nth-child(5){
-    background: url("./images/story-5.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(5) {
+  background: url("./images/story-5.jpg") no-repeat center center/cover;
 }
 
-.middle .stories .story:nth-child(6){
-    background: url("./images/story-6.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(6) {
+  background: url("./images/story-6.jpg") no-repeat center center/cover;
 }
 
-.middle .stories .story:nth-child(6){
-    background: url("./images/story-6.jpg") no-repeat center center/cover;
+.middle .stories .story:nth-child(6) {
+  background: url("./images/story-6.jpg") no-repeat center center/cover;
 }
 
-.middle .story .profile-photo{
-    width: 2rem;
-    height: 2rem;
-    align-self: start;
-    border: 3px solid var(--color-primary);
+.middle .story .profile-photo {
+  width: 2rem;
+  height: 2rem;
+  align-self: start;
+  border: 3px solid var(--color-primary);
 }
 
 /* --------------------- CREATE POST SECTION ------------------------ */
-.middle .create-post{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
-    background: var(--color-white);
-    padding: 0.4rem var(--card-padding);
-    border-radius: var(--border-radius);
+.middle .create-post {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  background: var(--color-white);
+  padding: 0.4rem var(--card-padding);
+  border-radius: var(--border-radius);
+}
+
+.middle .create-post input[type="text"] {
+  justify-content: start;
+  width: 100%;
+  padding-left: 1rem;
+  background: transparent;
+  color: var(--color-dark);
+  margin-right: 1rem;
+}
+
+/* ------------------------ FEEDS ---------------------------- */
+.middle .feeds .feed {
+  background: var(--color-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.middle .feed .head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.middle .feed .user {
+  display: flex;
+  gap: 1rem;
+}
+
+.middle .feed .photo {
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  margin: 0.7rem 0;
+}
+
+.middle .feed .action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  margin: 0.6rem;
+}
+
+.middle .liked-by {
+  display: flex;
+}
+
+.middle .liked-by span {
+  width: 1.4rem;
+  height: 1.4rem;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-white);
+  margin-left: -0.6rem;
+}
+
+/* the first child is hidden too much so we are working on that */
+.middle .liked-by span:first-child {
+  margin: 0;
+}
+
+.middle .liked-by p {
+    margin-left: 0.5rem;
 }
