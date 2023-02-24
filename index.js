@@ -1,0 +1,172 @@
+//================ SIDEBAR =====================
+const menuItems = document.querySelectorAll(".menu-item");
+
+//MESSAGES
+const messagesNotification = document.querySelector('#messages-notification')
+const messages = document.querySelector('.messages')
+const message = document.querySelectorAll('.message') //this is a class of messages selected
+const messageSearch = document.querySelector('#message-search')
+
+//THEME CUSTOMIZATION
+const theme = document.querySelector('#theme')
+const themeModal = document.querySelector('.customize-theme')
+var root = document.querySelector(':root')
+
+//FONT SIZE CUSTOMIZATION
+const fontSize = document.querySelectorAll('.choose-size span')
+
+//COLOR PALLETE
+const colorPalette = document.querySelectorAll('.choose-color span')
+
+/**
+ so at the moment it is only the HOME that is active,
+ so we want the others to be active when they are clicked
+ */
+
+menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+        changeActiveItems() //calling the remove function whenever one is clicked
+        item.classList.add("active");
+        
+        //showing notification-popup if user click on the notification button
+        if(item.id != 'notifications'){
+            document.querySelector('.notification-popup').style.display = 'none'
+        }else {
+            document.querySelector('.notification-popup').style.display = 'block'
+            document.querySelector('#notifications .notification-count').style.display = 'none'
+        }
+    });
+});
+
+
+ //remove active class from all menu-items when one is clicked
+const changeActiveItems = () => {
+    menuItems.forEach(item => {
+        item.classList.remove('active')
+    })
+}
+
+//================ END OF SIDEBAR =====================
+
+//================ MESSAGES SEARCH ==========================
+//searches chats
+const searchMessage = () => {
+    const val = messageSearch.value.toLowerCase()
+    message.forEach(user => {
+        let name = user.querySelectorAll('h5').textContent.toLowerCase()
+        if(name.indexOf(val) != -1){
+            user.style.display = 'flex'
+            console.log(name)
+        }else {
+            user.style.display = 'none'
+        }
+    })
+}
+
+//search chat: adding an event (keyup is an eventlistener just like click event)
+messageSearch.addEventListener('keyup', searchMessage)
+
+// //highlight messages card when messages menu item button is clicked
+messagesNotification.addEventListener('click', () => {
+    messages.style.boxShadow = '0 0 1rem var(--color-primary)'
+    messagesNotification.querySelector('.notification-count').style.display = 'none' // the notification to disappear after clicking
+    setTimeout(() => {
+        messages.style.boxShadow = 'none'
+    }, 2000) 
+})
+
+
+
+//================ THEME/DISPLAY CUSTOMIZATION (MODAL) ==========================
+//opens theme modal
+const openThemeModal = () => {
+    themeModal.style.display = 'grid'
+}
+//open function
+theme.addEventListener('click', openThemeModal)
+
+//closing modal when we click outside the modal
+const closeThemeModal = (event) => {
+    if(event.target.classList.contains('customize-theme')){
+        themeModal.style.display = 'none'
+    }else {
+        
+    }
+}
+//close modal
+themeModal.addEventListener('click', closeThemeModal)
+
+
+//================ FONTS ==========================
+
+//remove active class from spans or font size selectors
+const removeSizeSelector = () => {
+    fontSize.forEach(size => {
+        size.classList.remove('active')
+    })
+}
+/* we used "rem" for all our font sizes,
+that is why we're able to change all our font sizes at once
+just by changing that of our html element */
+fontSize.forEach(size => {
+    size.addEventListener('click', () => {
+    removeSizeSelector()
+    let fontSize;
+
+        size.classList.toggle('active') //toggling on the font size changing
+        if(size.classList.contains('font-size-1')){
+        fontSize = '10px'
+        root.style.setProperty('--sticky-top-left', '5.4rem')
+        root.style.setProperty('--sticky-top-right', '5.4rem')
+    }else if(size.classList.contains('font-size-2')){
+        fontSize = '13px'
+        root.style.setProperty('--sticky-top-left', '5.4rem')
+        root.style.setProperty('--sticky-top-right', '-7rem')
+    }else if(size.classList.contains('font-size-3')){
+        fontSize = '16px'
+        root.style.setProperty('--sticky-top-left', '-2rem')
+        root.style.setProperty('--sticky-top-right', '-17rem')
+    }else if(size.classList.contains('font-size-4')){
+        fontSize = '19px'
+        root.style.setProperty('--sticky-top-left', '-5rem')
+        root.style.setProperty('--sticky-top-right', '-25rem')
+    }else if(size.classList.contains('font-size-5')){
+        fontSize = '22px'
+        root.style.setProperty('--sticky-top-left', '-12rem')
+        root.style.setProperty('--sticky-top-right', '-35rem')
+    }
+    //change font size of the root html element
+    document.querySelector('html').style.fontSize = fontSize
+   })
+
+})
+
+//Remove active class from colors
+const changeActiveColorClass = () => {
+    colorPalette.forEach(colorPicker => {
+        colorPicker.classList.remove('active')
+    })
+}
+//CHANGE PRIMARY COLORS
+colorPalette.forEach(color => {
+    color.addEventListener('click', () => {
+        let primary
+        //Remove active class from colors 
+        changeActiveColorClass()
+        if(color.classList.contains('color-1')){
+            primaryHue = 252
+        }else if (color.classList.contains('color-2')){
+            primaryHue = 52
+        }else if(color.classList.contains('color-3')){
+            primaryHue = 352
+        }else if(color.classList.contains('color-4')){
+            primaryHue = 152
+        }else if(color.classList.contains('color-5')){
+            primaryHue = 202
+        }
+
+        color.classList.add('active')
+
+        root.style.setProperty('--color-primary-hue', primaryHue)
+    })
+})
