@@ -4,7 +4,7 @@ const menuItems = document.querySelectorAll(".menu-item");
 //MESSAGES
 const messagesNotification = document.querySelector("#messages-notification");
 const messages = document.querySelector(".messages");
-const message = document.querySelectorAll(".message"); //this is a class of messages selected
+const message = document.querySelectorAll(".messages"); //this is a class of messages selected
 const messageSearch = document.querySelector("#message-search");
 
 //THEME CUSTOMIZATION
@@ -59,12 +59,16 @@ const changeActiveItems = () => {
 const searchMessage = () => {
   const val = messageSearch.value.toLowerCase();
   message.forEach((user) => {
-    let name = user.querySelectorAll("h5").textContent.toLowerCase();
-    if (name.indexOf(val) != -1) {
-      user.style.display = "flex";
-      console.log(name);
-    } else {
+    console.log(user);
+    let name = [...user.querySelectorAll("h5")].map((element) => {
+      return element.textContent.toLowerCase();
+    });
+    console.log(name);
+    if (name.indexOf(val) !== -1) {
       user.style.display = "none";
+      console.log(val);
+    } else {
+      user.style.display = "flex";
     }
   });
 };
