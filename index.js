@@ -4,7 +4,7 @@ const menuItems = document.querySelectorAll(".menu-item");
 //MESSAGES
 const messagesNotification = document.querySelector("#messages-notification");
 const messages = document.querySelector(".messages");
-const message = document.querySelectorAll(".messages"); //this is a class of messages selected
+const message = document.querySelectorAll(".message"); //this is a class of messages selected
 const messageSearch = document.querySelector("#message-search");
 
 //THEME CUSTOMIZATION
@@ -57,18 +57,16 @@ const changeActiveItems = () => {
 //================ MESSAGES SEARCH ==========================
 //searches chats
 const searchMessage = () => {
-  const val = messageSearch.value.toLowerCase();
-  message.forEach((user) => {
-    console.log(user);
-    let name = [...user.querySelectorAll("h5")].map((element) => {
-      return element.textContent.toLowerCase();
-    });
-    console.log(name);
-    if (name.indexOf(val) !== -1) {
-      user.style.display = "none";
-      console.log(val);
+  const val = document.getElementById("message-search").value.toLowerCase(); // Get the value from the search input field
+  const messages = document.querySelectorAll(".message"); // Get all the message elements
+  
+  messages.forEach((message) => {
+    const name = message.querySelector("h5").textContent.toLowerCase(); // Get the name of the message sender
+    
+    if (name.includes(val)) {
+      message.style.display = "flex"; // Show the message if the name matches the search value
     } else {
-      user.style.display = "flex";
+      message.style.display = "none"; // Hide the message if the name does not match the search value
     }
   });
 };
